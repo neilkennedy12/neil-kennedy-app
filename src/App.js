@@ -6,9 +6,13 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { teal } from "@mui/material/colors";
-import { AppBar, ThemeProvider, createTheme } from "@mui/material";
-import Logo from "./images/Logo.png";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { TopBar } from "./components/TopBar";
+import { About } from "./components/About";
+import { Projects } from "./components/Projects";
+import { Contact } from "./components/Contact";
+import { NotFound } from "./components/NotFound";
 
 const theme = createTheme({
   palette: {
@@ -24,26 +28,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <div>
         <BrowserRouter>
-          <AppBar position="static" style={{ height: 80 }}>
-            <div
-              style={{
-                // justifyContent: "center",
-                paddingLeft: 10,
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <img src={Logo} alt="Logo" width={50} height={50} />
-              <h1 style={{ marginLeft: 30, fontWeight: "bold" }}>
-                Neil Kennedy
-              </h1>
-            </div>
-          </AppBar>
+          <TopBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/about" element={<About />} />
-  <Route path="/experience" element={<Experience />} /> */}
-            {/* ... add routes for all your desired pages ... */}
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </div>
